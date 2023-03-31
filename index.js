@@ -1,6 +1,8 @@
 
 /**
  * A function that takes in [a, b] and returns ['a', 'b', 'ab', 'ba']
+ *
+ * Attempt #1
  */
 function combinations(cs) {
   const maxLength = cs.length;
