@@ -1,23 +1,24 @@
-
+const util = require('util');
 /**
- * A function that takes in [a, b] and returns ['a', 'b', 'ab', 'ba']
- *
  * Attempt #1
+ * A function that takes in [a, b] and returns ['a', 'b', 'ab', 'ba']
+ * Attempt #2
+ * A function that takes in [a, b] and returns [['a'], ['b'], ['a', 'b'], ['b', 'a']]
  */
 function combinations(cs) {
   const maxLength = cs.length;
-  let result = [...cs];
+  let result = [...cs.map(c => [c])];
   for (let currentLength = 2; currentLength <= maxLength; currentLength++) {
     for (let r = 0; r < result.length; r++) {
-      let string = result[r];
-      if (string.length === currentLength) break;
-      if (string.length < currentLength - 1) continue;
+      let arr = [...result[r]];
+      if (arr.length === currentLength) break;
+      if (arr.length < currentLength - 1) continue;
       for (let cii = 0; cii < cs.length; cii++) {
         if (result[r].includes(cs[cii])) continue;
-        string += cs[cii]
-        if (string.length === currentLength) {
-          result.push(string);
-          string = result[r];
+        arr.push(cs[cii])
+        if (arr.length === currentLength) {
+          result.push(arr);
+          arr = [...result[r]];
         };
       }
     }
@@ -27,14 +28,40 @@ function combinations(cs) {
 
 [
   ['a', 'b'],
-  ['a', 'b', 'c'],
-  ['a', 'b', 'c', 'd'],
+  ['alfred', 'bob', 'chris'],
+  // ['a', 'b', 'c', 'd'],
+  // ['a', 'b', 'c', 'd', 'e'],
+  // ['a', 'b', 'c', 'd', 'e', 'f'],
+  // ['alf', 'bob', 'chris', 'devon', 'ellie', 'fred', 'greg'],
 ].forEach((vs) => {
-  console.log(combinations(vs));
+  console.log(util.inspect(combinations(vs), { maxArrayLength: Infinity }));
   console.log('-------');
 });
 
-/*
+/* Make it work with any combination of strings, not just chars
+[ [ 'a' ], [ 'b' ], [ 'a', 'b' ], [ 'b', 'a' ] ]
+-------
+[
+  [ 'alfred' ],
+  [ 'bob' ],
+  [ 'chris' ],
+  [ 'alfred', 'bob' ],
+  [ 'alfred', 'chris' ],
+  [ 'bob', 'alfred' ],
+  [ 'bob', 'chris' ],
+  [ 'chris', 'alfred' ],
+  [ 'chris', 'bob' ],
+  [ 'alfred', 'bob', 'chris' ],
+  [ 'alfred', 'chris', 'bob' ],
+  [ 'bob', 'alfred', 'chris' ],
+  [ 'bob', 'chris', 'alfred' ],
+  [ 'chris', 'alfred', 'bob' ],
+  [ 'chris', 'bob', 'alfred' ]
+]
+-------
+*/
+
+/* Initial implemention
 [ 'a', 'b', 'ab', 'ba' ]
 -------
 [
