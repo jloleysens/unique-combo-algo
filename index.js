@@ -31,3 +31,30 @@ function combinations(cs) {
   console.log(combinations(vs));
   console.log('-------');
 });
+
+/*
+[ 'a', 'b', 'ab', 'ba' ]
+-------
+[
+  'a',   'b',   'c',
+  'ab',  'ac',  'ba',
+  'bc',  'ca',  'cb',
+  'abc', 'acb', 'bac',
+  'bca', 'cab', 'cba'
+]
+-------
+[
+  'a',    'b',    'c',    'd',    'ab',   'ac',
+  'ad',   'ba',   'bc',   'bd',   'ca',   'cb',
+  'cd',   'da',   'db',   'dc',   'abc',  'abd',
+  'acb',  'acd',  'adb',  'adc',  'bac',  'bad',
+  'bca',  'bcd',  'bda',  'bdc',  'cab',  'cad',
+  'cba',  'cbd',  'cda',  'cdb',  'dab',  'dac',
+  'dba',  'dbc',  'dca',  'dcb',  'abcd', 'abdc',
+  'acbd', 'acdb', 'adbc', 'adcb', 'bacd', 'badc',
+  'bcad', 'bcda', 'bdac', 'bdca', 'cabd', 'cadb',
+  'cbad', 'cbda', 'cdab', 'cdba', 'dabc', 'dacb',
+  'dbac', 'dbca', 'dcab', 'dcba'
+]
+-------
+*/
